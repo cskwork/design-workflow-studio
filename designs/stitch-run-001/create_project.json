@@ -1,0 +1,19 @@
+{
+  "meta": null,
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"name\":\"projects/15420315932607600576\",\"title\":\"Design Workflow Studio - stitch-kit 3 design smoke test\",\"visibility\":\"PRIVATE\",\"projectType\":\"PROJECT_DESIGN\",\"origin\":\"STITCH\"}",
+      "annotations": null,
+      "meta": null
+    }
+  ],
+  "structuredContent": {
+    "name": "projects/15420315932607600576",
+    "origin": "STITCH",
+    "projectType": "PROJECT_DESIGN",
+    "title": "Design Workflow Studio - stitch-kit 3 design smoke test",
+    "visibility": "PRIVATE"
+  },
+  "isError": false
+}

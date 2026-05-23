@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Design Workflow Studio - Pro Control Center</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=JetBrains+Mono:wght@400&amp;family=Fira+Sans:wght@600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#36343a",
+                        "on-background": "#e6e0e9",
+                        "on-secondary-fixed": "#1f1635",
+                        "on-primary-container": "#e0d2ff",
+                        "on-surface": "#e6e0e9",
+                        "outline": "#948e9c",
+                        "inverse-surface": "#e6e0e9",
+                        "tertiary-fixed-dim": "#e7c365",
+                        "on-error": "#690005",
+                        "on-primary": "#381e72",
+                        "surface": "#141218",
+                        "secondary": "#cdc0e9",
+                        "on-secondary": "#342b4b",
+                        "on-primary-fixed-variant": "#4f378a",
+                        "secondary-container": "#4d4465",
+                        "inverse-on-surface": "#322f35",
+                        "on-secondary-container": "#bfb2da",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary": "#3e2e00",
+                        "surface-container-high": "#2b292f",
+                        "secondary-fixed-dim": "#cdc0e9",
+                        "tertiary-container": "#c9a74d",
+                        "surface-variant": "#36343a",
+                        "primary-container": "#6750a4",
+                        "tertiary": "#e7c365",
+                        "error-container": "#93000a",
+                        "inverse-primary": "#6750a4",
+                        "surface-container": "#211f24",
+                        "on-primary-fixed": "#22005d",
+                        "error": "#ffb4ab",
+                        "background": "#141218",
+                        "surface-container-low": "#1d1b20",
+                        "surface-container-lowest": "#0f0d13",
+                        "on-tertiary-container": "#503d00",
+                        "on-secondary-fixed-variant": "#4b4263",
+                        "outline-variant": "#494551",
+                        "primary-fixed-dim": "#cfbcff",
+                        "on-tertiary-fixed-variant": "#594400",
+                        "primary-fixed": "#e9ddff",
+                        "on-tertiary-fixed": "#241a00",
+                        "surface-tint": "#cfbcff",
+                        "surface-bright": "#3b383e",
+                        "secondary-fixed": "#e9ddff",
+                        "on-surface-variant": "#cbc4d2",
+                        "tertiary-fixed": "#ffdf93",
+                        "primary": "#cfbcff",
+                        "surface-dim": "#141218"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "base": "4px",
+                        "xl": "40px",
+                        "md": "16px",
+                        "sm": "8px",
+                        "xs": "4px",
+                        "grid_columns_desktop": "12",
+                        "lg": "24px",
+                        "grid_gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "body-base": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "mono-code": ["JetBrains Mono"],
+                        "label-caps": ["Fira Sans"],
+                        "headline-md": ["Inter"],
+                        "bilingual-sub": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-base": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "mono-code": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "bilingual-sub": ["13px", { "lineHeight": "1", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Custom scrollbar for developer-tool feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f0d13;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #36343a;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #494551;
+        }
+        /* Pro mode specific colors */
+        .pro-bg { background-color: #09090B; }
+        .pro-panel { background-color: #18181B; }
+        .pro-border { border-color: #27272A; }
+        .pro-accent { color: #3B82F6; }
+        .pro-accent-bg { background-color: #3B82F6; }
+        .pro-accent-border { border-color: #3B82F6; }
+        
+        .fira-code { font-family: 'Fira Sans', monospace; } /* Fallback to label-caps font */
+    </style>
+</head>
+<body class="pro-bg text-on-surface font-body-base text-body-base min-h-screen flex flex-col overflow-hidden">
+<!-- TopNavBar -->
+<nav class="bg-surface-container-low dark:bg-surface-container-lowest text-primary dark:text-primary-fixed-dim text-body-base font-body-base docked full-width top-0 z-50 border-b border-outline-variant dark:border-outline-variant flex justify-between items-center w-full px-md h-16 shrink-0">
+<div class="text-headline-md font-headline-md font-bold text-on-surface dark:text-on-surface">
+            Design Workflow Studio / 디자인 워크플로우 스튜디오
+        </div>
+<div class="flex items-center gap-md">
+<button class="text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-high transition-colors p-2 rounded-full scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined">language</span>
+</button>
+<button class="text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-high transition-colors p-2 rounded-full scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<button class="text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-high transition-colors p-2 rounded-full scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</nav>
+<div class="flex flex-1 overflow-hidden">
+<!-- SideNavBar -->
+<aside class="bg-surface-container dark:bg-surface-container-low text-primary dark:text-primary-fixed-dim text-label-caps font-label-caps docked left-0 h-full w-64 border-r border-outline-variant dark:border-outline-variant flex flex-col py-md gap-sm shrink-0">
+<div class="px-md mb-lg">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined">account_tree</span>
+</div>
+<div>
+<div class="text-headline-md font-headline-md font-bold text-on-surface text-sm">Project Workflow</div>
+<div class="text-bilingual-sub font-bilingual-sub text-on-surface-variant">AI Logic Engine</div>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary rounded-xl py-2 flex items-center justify-center gap-2 font-bold hover:bg-primary-fixed-dim transition-colors">
+<span class="material-symbols-outlined text-sm">add</span>
+                    New Project / 새 프로젝트
+                </button>
+</div>
+<nav class="flex-1 overflow-y-auto px-2 space-y-1">
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface flex items-center gap-sm px-md py-sm hover:bg-surface-container-highest dark:hover:bg-surface-variant rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="text-bilingual-sub font-bilingual-sub">Brief / 브리프</span>
+</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface flex items-center gap-sm px-md py-sm hover:bg-surface-container-highest dark:hover:bg-surface-variant rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined">rule</span>
+<span class="text-bilingual-sub font-bilingual-sub">Spec / 스펙</span>
+</a>
+<a class="bg-primary-container dark:bg-primary-container text-on-primary-container dark:text-on-primary-container rounded-xl flex items-center gap-sm px-md py-sm border border-primary" href="#">
+<span class="material-symbols-outlined">terminal</span>
+<span class="text-bilingual-sub font-bilingual-sub">Prompt / 프롬프트</span>
+</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface flex items-center gap-sm px-md py-sm hover:bg-surface-container-highest dark:hover:bg-surface-variant rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined">dashboard_customize</span>
+<span class="text-bilingual-sub font-bilingual-sub">Variants / 베리에이션</span>
+</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface flex items-center gap-sm px-md py-sm hover:bg-surface-container-highest dark:hover:bg-surface-variant rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined">ios_share</span>
+<span class="text-bilingual-sub font-bilingual-sub">Export / 내보내기</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Canvas (3 Column Layout) -->
+<main class="flex-1 flex overflow-hidden gap-1 p-1 pro-bg">
+<!-- Column 1: Input & Logic -->
+<section class="flex-1 flex flex-col gap-1 min-w-[300px] overflow-hidden">
+<!-- Brief Intake -->
+<div class="flex-1 pro-panel border pro-border rounded flex flex-col overflow-hidden">
+<header class="p-sm border-b pro-border flex items-center gap-2 bg-[#1d1d20]">
+<span class="material-symbols-outlined text-sm text-on-surface-variant">edit_document</span>
+<h2 class="text-label-caps font-label-caps text-on-surface-variant uppercase tracking-wider">Brief Intake / 브리프 입력</h2>
+</header>
+<div class="p-4 flex-1 overflow-y-auto">
+<textarea class="w-full h-full bg-transparent border-0 border-b pro-border focus:ring-0 focus:border-blue-500 text-body-base font-body-base text-on-surface resize-none p-0 pb-2" placeholder="Enter Project Brief / 프로젝트 브리프를 입력하세요."></textarea>
+</div>
+</div>
+<!-- Stitch Prompt -->
+<div class="flex-[1.5] pro-panel border pro-border rounded flex flex-col overflow-hidden relative">
+<!-- Progress Bar (Fake) -->
+<div class="absolute top-0 left-0 h-[2px] pro-accent-bg w-1/3"></div>
+<header class="p-sm border-b pro-border flex items-center justify-between bg-[#1d1d20]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm pro-accent">terminal</span>
+<h2 class="text-label-caps font-label-caps pro-accent uppercase tracking-wider">Stitch Prompt / 스티치 프롬프트</h2>
+</div>
+<span class="flex h-2 w-2 relative">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 pro-accent-bg"></span>
+</span>
+</header>
+<div class="p-0 flex-1 overflow-hidden relative">
+<div class="absolute inset-0 border-2 pro-accent-border opacity-50 pointer-events-none z-10 m-[1px]"></div>
+<textarea class="w-full h-full bg-transparent border-0 focus:ring-0 text-mono-code font-mono-code text-on-surface resize-none p-4 font-mono leading-relaxed fira-code" spellcheck="false">// System Prompt Initialized
+{
+  "context": "Professional Dashboard UI",
+  "style": "Dark, Data-Dense",
+  "primary_action": "Data Visualization",
+  "constraints": [
+    "High contrast ratios",
+    "Monospace tabular data",
+    "Minimal border radii"
+  ]
+}
+
+// Generating sequence...
+&gt; Stitching logic boundaries...
+&gt; Applying Tailwind tokens...
+                        </textarea>
+</div>
+</div>
+</section>
+<!-- Column 2: Variants (Center) -->
+<section class="flex-[1.2] flex flex-col gap-1 min-w-[350px] overflow-y-auto pr-1">
+<header class="pro-panel border pro-border rounded p-sm flex items-center justify-between shrink-0 bg-[#1d1d20]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-on-surface-variant">grid_view</span>
+<h2 class="text-label-caps font-label-caps text-on-surface-variant uppercase tracking-wider">3 Variants / 베리에이션</h2>
+</div>
+<span class="text-xs text-on-surface-variant">Auto-stacked</span>
+</header>
+<!-- Variant 1 -->
+<div class="pro-panel border pro-border rounded flex flex-col overflow-hidden group">
+<div class="p-sm border-b pro-border flex justify-between items-center bg-[#1d1d20]">
+<span class="text-label-caps font-label-caps text-on-surface-variant">v1.0 / Direction A</span>
+<div class="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-on-surface-variant hover:text-white p-1"><span class="material-symbols-outlined text-[16px]">star</span></button>
+<button class="text-on-surface-variant hover:text-white p-1"><span class="material-symbols-outlined text-[16px]">download</span></button>
+</div>
+</div>
+<div class="aspect-video bg-[#0f0d13] relative overflow-hidden flex items-center justify-center p-4">
+<!-- Placeholder wireframe graphic -->
+<div class="w-full h-full border border-[#27272A] rounded flex flex-col gap-2 p-2">
+<div class="h-4 bg-[#27272A] rounded w-1/3"></div>
+<div class="flex-1 flex gap-2">
+<div class="w-1/4 bg-[#27272A] rounded"></div>
+<div class="flex-1 bg-[#27272A] rounded opacity-50"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Variant 2 -->
+<div class="pro-panel border pro-border rounded flex flex-col overflow-hidden group">
+<div class="p-sm border-b pro-border flex justify-between items-center bg-[#1d1d20]">
+<span class="text-label-caps font-label-caps text-on-surface-variant">v1.1 / Direction B</span>
+<div class="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-on-surface-variant hover:text-white p-1"><span class="material-symbols-outlined text-[16px]">star</span></button>
+<button class="text-on-surface-variant hover:text-white p-1"><span class="material-symbols-outlined text-[16px]">download</span></button>
+</div>
+</div>
+<div class="aspect-video bg-[#0f0d13] relative overflow-hidden flex items-center justify-center p-4">
+<div class="w-full h-full border border-[#27272A] rounded flex flex-col gap-2 p-2">
+<div class="flex justify-between">
+<div class="h-4 bg-[#27272A] rounded w-1/4"></div>
+<div class="h-4 bg-[#27272A] rounded w-1/4"></div>
+</div>
+<div class="flex-1 bg-[#27272A] rounded opacity-50"></div>
+</div>
+</div>
+</div>
+<!-- Variant 3 -->
+<div class="pro-panel border pro-border rounded flex flex-col overflow-hidden group">
+<div class="p-sm border-b pro-border flex justify-between items-center bg-[#1d1d20]">
+<span class="text-label-caps font-label-caps text-on-surface-variant">v1.2 / Direction C</span>
+<div class="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-on-surface-variant hover:text-white p-1"><span class="material-symbols-outlined text-[16px]">star</span></button>
+<button class="text-on-surface-variant hover:text-white p-1"><span class="material-symbols-outlined text-[16px]">download</span></button>
+</div>
+</div>
+<div class="aspect-video bg-[#0f0d13] relative overflow-hidden flex items-center justify-center p-4">
+<div class="w-full h-full border border-[#27272A] rounded flex gap-2 p-2">
+<div class="w-1/3 bg-[#27272A] rounded opacity-50"></div>
+<div class="w-1/3 bg-[#27272A] rounded opacity-50"></div>
+<div class="w-1/3 bg-[#27272A] rounded opacity-50"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Column 3: Specs & Export -->
+<section class="flex-1 flex flex-col gap-1 min-w-[300px] overflow-hidden">
+<!-- Gemini Spec -->
+<div class="flex-[2] pro-panel border pro-border rounded flex flex-col overflow-hidden">
+<header class="p-sm border-b pro-border flex items-center gap-2 bg-[#1d1d20]">
+<span class="material-symbols-outlined text-sm text-on-surface-variant">settings_ethernet</span>
+<h2 class="text-label-caps font-label-caps text-on-surface-variant uppercase tracking-wider">Gemini Spec / 제미나이 스펙</h2>
+</header>
+<div class="p-0 flex-1 overflow-y-auto">
+<table class="w-full text-left border-collapse">
+<tbody>
+<tr class="border-b pro-border">
+<td class="py-2 px-3 text-mono-code font-mono-code text-on-surface-variant border-r pro-border w-1/3 fira-code">Model</td>
+<td class="py-2 px-3 text-body-base font-body-base text-on-surface">Gemini-1.5-Pro</td>
+</tr>
+<tr class="border-b pro-border">
+<td class="py-2 px-3 text-mono-code font-mono-code text-on-surface-variant border-r pro-border fira-code">Temperature</td>
+<td class="py-2 px-3 text-body-base font-body-base text-on-surface">0.2 (High Precision)</td>
+</tr>
+<tr class="border-b pro-border">
+<td class="py-2 px-3 text-mono-code font-mono-code text-on-surface-variant border-r pro-border fira-code">Tokens</td>
+<td class="py-2 px-3 text-body-base font-body-base text-on-surface">Max: 8192</td>
+</tr>
+<tr class="border-b pro-border">
+<td class="py-2 px-3 text-mono-code font-mono-code text-on-surface-variant border-r pro-border fira-code">Format</td>
+<td class="py-2 px-3 text-body-base font-body-base text-on-surface">JSON + HTML</td>
+</tr>
+<tr>
+<td class="py-2 px-3 text-mono-code font-mono-code text-on-surface-variant border-r pro-border fira-code align-top">Dependencies</td>
+<td class="py-2 px-3 text-body-base font-body-base text-on-surface">
+<ul class="list-disc list-inside text-sm text-on-surface-variant">
+<li>Tailwind CSS v3</li>
+<li>Material Symbols</li>
+<li>Inter Font</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Review & Export -->
+<div class="flex-1 pro-panel border pro-border rounded flex flex-col p-4 gap-4 justify-end">
+<div>
+<h3 class="text-label-caps font-label-caps text-on-surface-variant uppercase tracking-wider mb-2">Review</h3>
+<p class="text-sm text-on-surface-variant mb-4">All logic constraints met. 3 variants generated successfully. Ready for implementation handover.</p>
+</div>
+<div class="flex flex-col gap-2 mt-auto">
+<button class="w-full bg-surface text-on-surface border pro-border py-2 rounded font-semibold text-sm hover:bg-surface-container-high transition-colors text-center">
+                            View Log
+                        </button>
+<button class="w-full pro-accent-bg text-white border pro-accent-border py-2 rounded font-bold text-sm hover:brightness-110 transition-all text-center flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">rocket_launch</span>
+                            Export / 내보내기
+                        </button>
+</div>
+</div>
+</section>
+</main>
+</div>
+</body></html>
