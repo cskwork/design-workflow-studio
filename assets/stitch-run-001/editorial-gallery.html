@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Design Workflow Studio - Editorial Gallery</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Fira+Sans:wght@600&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#36343a",
+                        "on-background": "#292524", // Adjusted for requested theme
+                        "on-secondary-fixed": "#1f1635",
+                        "on-primary-container": "#e0d2ff",
+                        "on-surface": "#292524", // Adjusted for requested theme
+                        "outline": "#948e9c",
+                        "inverse-surface": "#e6e0e9",
+                        "tertiary-fixed-dim": "#e7c365",
+                        "on-error": "#690005",
+                        "on-primary": "#ffffff", // Adjusted
+                        "surface": "#F4F0EA", // Adjusted for requested theme
+                        "secondary": "#cdc0e9",
+                        "on-secondary": "#342b4b",
+                        "on-primary-fixed-variant": "#4f378a",
+                        "secondary-container": "#4d4465",
+                        "inverse-on-surface": "#322f35",
+                        "on-secondary-container": "#bfb2da",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary": "#3e2e00",
+                        "surface-container-high": "#2b292f",
+                        "secondary-fixed-dim": "#cdc0e9",
+                        "tertiary-container": "#c9a74d",
+                        "surface-variant": "#36343a",
+                        "primary-container": "#6750a4",
+                        "tertiary": "#e7c365",
+                        "error-container": "#93000a",
+                        "inverse-primary": "#6750a4",
+                        "surface-container": "#211f24",
+                        "on-primary-fixed": "#22005d",
+                        "error": "#ffb4ab",
+                        "background": "#FDFCF8", // Adjusted for requested theme
+                        "surface-container-low": "#1d1b20",
+                        "surface-container-lowest": "#0f0d13",
+                        "on-tertiary-container": "#503d00",
+                        "on-secondary-fixed-variant": "#4b4263",
+                        "outline-variant": "#d6d3d1", // Adjusted for requested theme
+                        "primary-fixed-dim": "#cfbcff",
+                        "on-tertiary-fixed-variant": "#594400",
+                        "primary-fixed": "#e9ddff",
+                        "on-tertiary-fixed": "#241a00",
+                        "surface-tint": "#cfbcff",
+                        "surface-bright": "#3b383e",
+                        "secondary-fixed": "#e9ddff",
+                        "on-surface-variant": "#78716c", // Adjusted for requested theme
+                        "tertiary-fixed": "#ffdf93",
+                        "primary": "#E04F33", // Adjusted for requested terracotta accent
+                        "surface-dim": "#141218"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem",
+                        "2xl": "1rem",
+                        "3xl": "1.5rem"
+                    },
+                    "spacing": {
+                        "base": "4px",
+                        "xl": "40px",
+                        "md": "16px",
+                        "sm": "8px",
+                        "xs": "4px",
+                        "grid_columns_desktop": "12",
+                        "lg": "24px",
+                        "grid_gutter": "24px",
+                        "2xl": "64px",
+                        "3xl": "96px"
+                    },
+                    "fontFamily": {
+                        "body-base": ["Inter", "sans-serif"],
+                        "display-lg": ["Inter", "sans-serif"],
+                        "mono-code": ["JetBrains Mono", "monospace"],
+                        "label-caps": ["Fira Sans", "sans-serif"],
+                        "headline-md": ["Inter", "sans-serif"],
+                        "bilingual-sub": ["Inter", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "body-base": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "mono-code": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "bilingual-sub": ["13px", { "lineHeight": "1", "fontWeight": "400" }]
+                    },
+                    "boxShadow": {
+                        'ambient': '0 32px 64px -12px rgba(0, 0, 0, 0.04)',
+                        'floating': '0 12px 32px -4px rgba(0, 0, 0, 0.08)'
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Custom overrides for the forced light theme per prompt despite global dark class */
+        .dark body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-base antialiased">
+<!-- TopNavBar -->
+<nav class="bg-surface flex justify-between items-center w-full px-2xl h-20 border-b border-outline-variant sticky top-0 z-50">
+<div class="text-headline-md font-headline-md font-bold text-on-surface tracking-tight">
+            Design Workflow Studio <span class="font-bilingual-sub text-bilingual-sub text-on-surface-variant font-normal ml-2">/ 디자인 워크플로우 스튜디오</span>
+</div>
+<div class="flex items-center gap-lg">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">language</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">settings</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">account_circle</span>
+</button>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 w-full max-w-screen-2xl mx-auto px-2xl py-3xl flex flex-col items-center">
+<!-- Progress Bar (Top) -->
+<div class="w-full max-w-4xl mb-3xl">
+<div class="flex justify-between items-center relative">
+<!-- Track -->
+<div class="absolute left-0 top-1/2 -translate-y-1/2 w-full h-[1px] bg-outline-variant -z-10"></div>
+<div class="absolute left-0 top-1/2 -translate-y-1/2 w-3/4 h-[1px] bg-primary -z-10"></div>
+<!-- Steps -->
+<div class="flex flex-col items-center gap-sm bg-background px-md">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-sm">check</span>
+</div>
+<span class="text-label-caps font-label-caps text-on-surface">Brief Intake</span>
+</div>
+<div class="flex flex-col items-center gap-sm bg-background px-md">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-sm">check</span>
+</div>
+<span class="text-label-caps font-label-caps text-on-surface">Gemini Spec</span>
+</div>
+<div class="flex flex-col items-center gap-sm bg-background px-md">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-sm">check</span>
+</div>
+<span class="text-label-caps font-label-caps text-on-surface">Stitch Prompt</span>
+</div>
+<div class="flex flex-col items-center gap-sm bg-background px-md">
+<div class="w-8 h-8 rounded-full border-2 border-primary bg-background flex items-center justify-center text-primary">
+<span class="font-mono-code text-sm">4</span>
+</div>
+<span class="text-label-caps font-label-caps text-primary">3 Variants</span>
+</div>
+<div class="flex flex-col items-center gap-sm bg-background px-md">
+<div class="w-8 h-8 rounded-full border border-outline-variant bg-background flex items-center justify-center text-on-surface-variant">
+<span class="font-mono-code text-sm">5</span>
+</div>
+<span class="text-label-caps font-label-caps text-on-surface-variant">Export</span>
+</div>
+</div>
+</div>
+<!-- Center: Carousel -->
+<div class="w-full mb-3xl">
+<h2 class="text-display-lg font-display-lg text-center mb-xl text-on-background">Editorial Gallery</h2>
+<p class="text-body-base font-body-base text-on-surface-variant text-center max-w-2xl mx-auto mb-2xl">
+                Review the generated design directions. The AI has synthesized the brief into three distinct visual variants. Select one to proceed to the final export phase.
+            </p>
+<div class="flex gap-lg overflow-x-auto hide-scrollbar snap-x snap-mandatory py-lg px-4 -mx-4 w-full justify-center">
+<!-- Variant 1 -->
+<div class="snap-center shrink-0 w-[400px] bg-surface rounded-2xl shadow-ambient p-lg relative group cursor-pointer border border-transparent hover:border-primary transition-all duration-300">
+<div class="absolute top-md right-md bg-background/80 backdrop-blur-sm px-sm py-xs rounded-lg text-bilingual-sub font-bilingual-sub text-on-surface z-10">
+                        v1.0 / Direction A
+                    </div>
+<div class="w-full aspect-[4/3] rounded-xl overflow-hidden mb-md bg-outline-variant/20 relative">
+<img alt="Variant A" class="w-full h-full object-cover" data-alt="A clean, minimalist interior design concept for a modern living space. The room features a neutral color palette heavily utilizing warm whites, soft beiges, and subtle terracotta accents. Light streams in from a large window, creating soft, diffuse shadows across a light wood floor and a low-profile cream sofa. The aesthetic is serene, editorial, and sophisticated, reflecting a high-end architectural digest style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAl3kyOdWKU0RRENkg13pQ_dJ5-8tRXomgaiqorf9_q9cVMBGaOyO7QQkJ2zVLVrDFkSYHmRVNZ3BUVNpIONpSbxGo171CC7P6mf8w8LgfRddmRU1jz5PciJhAk9AVhLKhqruxnGD77t_m1O7gCcpmvPdVlML61t0k7v_hsD9PdoNoPmahpZ0_RldrOpigb74UuObsz-EyZue8HHYX64eYzCJo9uplnrdAZEWlxFoeXIZARLEm7oBVBdwwOTk0gxoF75cafJ3ZUAGM"/>
+<!-- Hover Actions -->
+<div class="absolute inset-0 bg-on-background/10 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-md">
+<button class="w-12 h-12 rounded-full bg-background flex items-center justify-center text-on-background hover:text-primary shadow-floating transition-colors">
+<span class="material-symbols-outlined">star</span>
+</button>
+<button class="w-12 h-12 rounded-full bg-background flex items-center justify-center text-on-background hover:text-primary shadow-floating transition-colors">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+</div>
+<h3 class="text-headline-md font-headline-md mb-xs">Organic Modernism</h3>
+<p class="text-body-base font-body-base text-on-surface-variant">Soft curves, natural materials, and a focus on warm ambient lighting.</p>
+</div>
+<!-- Variant 2 (Active/Selected) -->
+<div class="snap-center shrink-0 w-[400px] bg-surface rounded-2xl shadow-ambient p-lg relative group cursor-pointer border-2 border-primary transform scale-105 transition-all duration-300">
+<div class="absolute top-md right-md bg-background/80 backdrop-blur-sm px-sm py-xs rounded-lg text-bilingual-sub font-bilingual-sub text-on-surface z-10 flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                        v1.1 / Direction B
+                    </div>
+<div class="w-full aspect-[4/3] rounded-xl overflow-hidden mb-md bg-outline-variant/20 relative">
+<img alt="Variant B" class="w-full h-full object-cover" data-alt="An editorial shot of a minimalist workspace setting. The composition centers on a sleek, light-oak desk adorned with a single, sculptural ceramic vase holding dried structural branches. The background is a stark, slightly textured warm white wall. Natural, directional sunlight creates a graphic shadow play across the surface. The mood is highly curated, tranquil, and sharply focused, emphasizing clean lines and empty space." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBN5RvMhsWBD4ofOOLaU8oDdLnVdZJf4_ilMvOyWeVZixGt9TODMppbraJkOTyQ19Mf8Rr8I5hBH52Tr4Me7hnxcwJ275Xhc1NlvaHxQRlQv0RNcGPH-GpwUTkgyj7py4nUg1aW0yCLnKIXRv6N5gJhSfnYYrhsjl3-8SFMRlpPvChczol_v4bSdGNz9RI2XJyONZGHBANv8-Pg9bSdlAlZc64DIaiVGXNNN4Fo8OVnqiGvk1T3tXF9JabYwk_Aj7JB2gK6UL02svE"/>
+<!-- Hover Actions -->
+<div class="absolute inset-0 bg-on-background/10 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-md">
+<button class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-on-primary shadow-floating transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</button>
+</div>
+</div>
+<h3 class="text-headline-md font-headline-md mb-xs">Structural Minimalism</h3>
+<p class="text-body-base font-body-base text-on-surface-variant">High contrast, sharp geometry, and negative space prioritized.</p>
+</div>
+<!-- Variant 3 -->
+<div class="snap-center shrink-0 w-[400px] bg-surface rounded-2xl shadow-ambient p-lg relative group cursor-pointer border border-transparent hover:border-primary transition-all duration-300">
+<div class="absolute top-md right-md bg-background/80 backdrop-blur-sm px-sm py-xs rounded-lg text-bilingual-sub font-bilingual-sub text-on-surface z-10">
+                        v1.2 / Direction C
+                    </div>
+<div class="w-full aspect-[4/3] rounded-xl overflow-hidden mb-md bg-outline-variant/20 relative">
+<img alt="Variant C" class="w-full h-full object-cover" data-alt="A beautifully styled vignette featuring a textured stone podium against a softly draped linen backdrop. The color palette is strictly tonal, exploring variations of warm cream, sand, and taupe. A single shaft of golden-hour light cuts across the scene, highlighting the rough texture of the stone against the smooth fabric. The visual style is highly aesthetic, romantic yet austere, resembling a high-fashion editorial set." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHS5bwPGCE-Sybmxq7HgQ2-D--v9C2wN7DaW0AFqz_ympAFQuTXo5f07U3gXKHudfpKlfnqmIGs2mZldzt3JpXRZjA5vaqQLWXvDDOjqSAllhuKbH7hROYE3g7likdgiweI391vbsj9HOeLB8ux5mGeTAkQMVRAQPkylUCsRMyneibEj8g3RwuHLsITr2mCQOEjiAW4h-bt7UKJVhTQ5W4AVUZCsxHSpfCxBv6l_sQF3uPYeibdtNXu7OLzzJEmZfuYfIt_hubraM"/>
+<!-- Hover Actions -->
+<div class="absolute inset-0 bg-on-background/10 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-md">
+<button class="w-12 h-12 rounded-full bg-background flex items-center justify-center text-on-background hover:text-primary shadow-floating transition-colors">
+<span class="material-symbols-outlined">star</span>
+</button>
+<button class="w-12 h-12 rounded-full bg-background flex items-center justify-center text-on-background hover:text-primary shadow-floating transition-colors">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+</div>
+<h3 class="text-headline-md font-headline-md mb-xs">Tactile Tonal</h3>
+<p class="text-body-base font-body-base text-on-surface-variant">Focus on material texture, monochromatic warmth, and subtle depth.</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Action Bar (Floating) -->
+<div class="fixed bottom-xl left-1/2 -translate-x-1/2 z-50">
+<div class="bg-background/90 backdrop-blur-md border border-outline-variant shadow-floating rounded-full px-lg py-sm flex items-center gap-lg">
+<div class="text-body-base font-body-base text-on-surface font-semibold flex flex-col">
+<span>Review &amp; Export</span>
+<span class="font-bilingual-sub text-bilingual-sub text-on-surface-variant font-normal">리뷰 및 내보내기</span>
+</div>
+<div class="h-8 w-[1px] bg-outline-variant mx-2"></div>
+<button class="px-md py-sm rounded-full border border-outline-variant text-on-surface hover:bg-surface-variant/10 transition-colors text-label-caps font-label-caps">
+                Reject All
+            </button>
+<button class="px-lg py-sm rounded-full bg-primary text-on-primary shadow-md hover:bg-primary/90 transition-colors text-label-caps font-label-caps flex items-center gap-xs">
+                Export Selected
+                <span class="material-symbols-outlined text-sm">ios_share</span>
+</button>
+</div>
+</div>
+</body></html>
