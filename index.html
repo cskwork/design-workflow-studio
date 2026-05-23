@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Design Workflow Studio | Stitch + Gemini UI Lab</title>
+  <meta name="description" content="Stitch, Gemini CLI, Hermes Agent로 디자인 요청을 전문 사이트처럼 수집하고 3가지 시안으로 검토하는 전용 디자인 워크플로 스튜디오." />
+  <meta property="og:title" content="Design Workflow Studio" />
+  <meta property="og:description" content="브리프 입력부터 Stitch 프롬프트, 3가지 디자인 시안, 리뷰, 코드 변환까지 한 곳에서 관리합니다." />
+  <meta property="og:type" content="website" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">본문으로 바로가기</a>
+
+  <header class="site-header" data-elevated="false">
+    <div class="shell nav-shell">
+      <a class="brand" href="#top" aria-label="Design Workflow Studio 홈">
+        <span class="brand-mark" aria-hidden="true">D</span>
+        <span>
+          <strong>Design Workflow Studio</strong>
+          <small>Stitch + Gemini UI Lab</small>
+        </span>
+      </a>
+      <nav class="nav-links" aria-label="주요 섹션">
+        <a href="#workflow">워크플로</a>
+        <a href="#directions">3가지 시안</a>
+        <a href="#requests">요청 방식</a>
+        <a href="#deploy">운영 원칙</a>
+      </nav>
+      <button class="nav-cta" data-scroll-to="requests">디자인 요청하기</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section id="top" class="hero section">
+      <div class="shell hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">전용 공개 디자인 허브</p>
+          <h1>아이디어를 바로 비교 가능한 3개의 전문 UI 방향으로 바꿉니다.</h1>
+          <p class="lead">
+            Gemini 3.1 Pro가 디자인 방향을 정의하고, Stitch 프롬프트로 시각 시안을 생성하며,
+            최종 선택안은 코드/페이지로 정리하는 반복형 디자인 워크플로입니다.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#directions">시안 둘러보기</a>
+            <a class="button ghost" href="#requests">요청 템플릿 보기</a>
+          </div>
+          <dl class="hero-metrics" aria-label="워크플로 요약 수치">
+            <div><dt>3</dt><dd>기본 디자인 방향</dd></div>
+            <div><dt>5</dt><dd>검토 단계</dd></div>
+            <div><dt>1</dt><dd>공개 GitHub 허브</dd></div>
+          </dl>
+        </div>
+        <div class="hero-panel" aria-label="디자인 워크플로 미리보기">
+          <div class="panel-topbar">
+            <span></span><span></span><span></span>
+            <strong>Live design queue</strong>
+          </div>
+          <div class="queue-card active">
+            <div>
+              <small>01 · Brief intake</small>
+              <strong>AI Design Workflow Studio</strong>
+            </div>
+            <span>진행 중</span>
+          </div>
+          <div class="prompt-card">
+            <small>Generated Stitch prompt</small>
+            <pre>Create a 1440px desktop dashboard...\nUse Korean/English labels...\nShow 3 variants side-by-side...</pre>
+          </div>
+          <div class="variant-stack" aria-label="세 가지 시안 카드">
+            <article><b>Pro Control</b><small>Data-dense</small></article>
+            <article><b>Editorial</b><small>Calm review</small></article>
+            <article><b>Creative Board</b><small>Spatial canvas</small></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="workflow" class="section workflow-section">
+      <div class="shell">
+        <div class="section-heading">
+          <p class="eyebrow">운영 방식</p>
+          <h2>요청이 들어오면 항상 같은 기준으로 설계합니다.</h2>
+          <p>앞으로 들어올 디자인 요청을 이 허브에 누적하고, 각 요청마다 근거·시안·결정사항을 남기는 구조입니다.</p>
+        </div>
+        <ol class="workflow-steps">
+          <li><span>01</span><strong>Brief Intake</strong><p>목표, 사용자, 화면 종류, 톤, 참고 서비스를 짧게 수집합니다.</p></li>
+          <li><span>02</span><strong>Spec by Gemini</strong><p>Gemini 3.1 Pro로 색상, 타입, 밀도, 레이아웃 기준을 정합니다.</p></li>
+          <li><span>03</span><strong>Stitch Prompt</strong><p>Stitch가 바로 이해할 수 있는 구체적인 프롬프트로 변환합니다.</p></li>
+          <li><span>04</span><strong>3 Design Takes</strong><p>보수적·강력 추천·실험적 방향을 비교 가능한 형태로 만듭니다.</p></li>
+          <li><span>05</span><strong>Review & Ship</strong><p>선택안을 다듬고 HTML/React/Next.js 등으로 배포합니다.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="directions" class="section directions-section">
+      <div class="shell">
+        <div class="section-heading split">
+          <div>
+            <p class="eyebrow">첫 테스트 세트</p>
+            <h2>같은 목적, 완전히 다른 3가지 디자인 언어</h2>
+          </div>
+          <p>단순 색상 변경이 아니라 정보 밀도, 검토 방식, 인터랙션 모델 자체를 다르게 잡았습니다.</p>
+        </div>
+
+        <div class="tabs" role="tablist" aria-label="디자인 방향 선택">
+          <button role="tab" aria-selected="true" aria-controls="panel-pro" id="tab-pro" data-tab="pro">전문가용 컨트롤 센터</button>
+          <button role="tab" aria-selected="false" aria-controls="panel-editorial" id="tab-editorial" data-tab="editorial">에디토리얼 갤러리</button>
+          <button role="tab" aria-selected="false" aria-controls="panel-board" id="tab-board" data-tab="board">크리에이티브 보드</button>
+        </div>
+
+        <div class="direction-panels">
+          <article class="direction-panel active theme-pro" id="panel-pro" role="tabpanel" aria-labelledby="tab-pro" data-panel="pro">
+            <div class="direction-copy">
+              <p class="eyebrow">pro-control-center</p>
+              <h3>전문가용 컨트롤 센터</h3>
+              <p>프롬프트, 생성 시안, 내보내기 코드를 한 화면에서 동시에 보는 고밀도 운영 UI입니다.</p>
+              <ul>
+                <li>3단 컬럼: 브리프 · 시안 · 코드</li>
+                <li>Inter + Fira Code, 12–14px 중심</li>
+                <li>다크 패널, 파란 액션, 개발자 도구 같은 밀도</li>
+              </ul>
+              <button class="button primary copy-prompt" data-prompt="pro">Stitch 프롬프트 복사</button>
+            </div>
+            <div class="mockup pro-mockup" aria-label="전문가용 컨트롤 센터 목업">
+              <div class="mock-col left"><small>Brief Intake</small><textarea aria-label="브리프 예시">SaaS dashboard for AI design review...</textarea><pre>{ "model": "GEMINI_3_1_PRO", "variants": 3 }</pre></div>
+              <div class="mock-col center"><div class="mini-card selected">Variant A · dashboard</div><div class="mini-card">Variant B · gallery</div><div class="mini-card">Variant C · canvas</div></div>
+              <div class="mock-col right"><small>Export</small><pre>export function DesignCard() {\n  return &lt;section&gt;...\n}</pre></div>
+            </div>
+          </article>
+
+          <article class="direction-panel theme-editorial" id="panel-editorial" role="tabpanel" aria-labelledby="tab-editorial" data-panel="editorial" hidden>
+            <div class="direction-copy">
+              <p class="eyebrow">editorial-gallery</p>
+              <h3>에디토리얼 갤러리</h3>
+              <p>클라이언트와 함께 보기 좋은 차분한 검토 공간입니다. 큰 카드와 여백으로 선택 피로를 줄입니다.</p>
+              <ul>
+                <li>상단 5단계 진행 바</li>
+                <li>대형 가로 캐러셀, 스냅 스크롤</li>
+                <li>따뜻한 라이트 팔레트와 세리프 헤딩</li>
+              </ul>
+              <button class="button primary copy-prompt" data-prompt="editorial">Stitch 프롬프트 복사</button>
+            </div>
+            <div class="mockup editorial-mockup" aria-label="에디토리얼 갤러리 목업">
+              <div class="stepper"><span class="done">Brief</span><span>Prompt</span><span>Variants</span><span>Review</span><span>Export</span></div>
+              <div class="gallery-card"><small>Selected concept</small><strong>Editorial review experience</strong><p>넉넉한 여백과 큰 미리보기로 의사결정을 돕습니다.</p><button>Approve & Export</button></div>
+            </div>
+          </article>
+
+          <article class="direction-panel theme-board" id="panel-board" role="tabpanel" aria-labelledby="tab-board" data-panel="board" hidden>
+            <div class="direction-copy">
+              <p class="eyebrow">creative-board</p>
+              <h3>크리에이티브 보드</h3>
+              <p>FigJam/Miro처럼 시안을 공간에 펼쳐 놓고 드래그하며 선택하는 실험적인 캔버스 UI입니다.</p>
+              <ul>
+                <li>플로팅 브리프 패널</li>
+                <li>흩어진 3개 시안 노드와 연결선</li>
+                <li>Export Zone으로 드롭하는 제스처</li>
+              </ul>
+              <button class="button primary copy-prompt" data-prompt="board">Stitch 프롬프트 복사</button>
+            </div>
+            <div class="mockup board-mockup" aria-label="크리에이티브 보드 목업">
+              <div class="floating-tool">Design Brief<br><button>Generate</button></div>
+              <div class="node one">Variant A</div><div class="node two">Variant B</div><div class="node three">Variant C</div>
+              <div class="drop-zone">Export Zone</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="requests" class="section request-section">
+      <div class="shell request-grid">
+        <div>
+          <p class="eyebrow">앞으로의 요청 방식</p>
+          <h2>디자인 요청은 짧아도 됩니다. 대신 결정 기준은 남깁니다.</h2>
+          <p class="muted">아래 포맷으로 요청하면 Gemini/Stitch 워크플로에 바로 넣을 수 있습니다.</p>
+        </div>
+        <div class="request-card">
+          <div class="card-header"><strong>Request template</strong><button class="text-button" id="copy-template">복사</button></div>
+          <pre id="template-text">목표: 어떤 화면/사이트를 만들고 싶은지
+사용자: 누가 쓰는지
+톤: 전문적 / 따뜻함 / 실험적 / 고급스러움
+참고: 닮았으면 하는 서비스나 싫은 예시
+필수 요소: 반드시 들어가야 하는 콘텐츠
+출력: 3개 시안 / HTML / Next.js / PPT 등</pre>
+        </div>
+      </div>
+    </section>
+
+    <section id="deploy" class="section deploy-section">
+      <div class="shell deploy-grid">
+        <div class="deploy-card">
+          <p class="eyebrow">GitHub 운영</p>
+          <h2>공개 저장소 + GitHub Pages로 운영</h2>
+          <p>이 사이트는 전용 공개 저장소에서 관리하고, GitHub Pages로 배포하기 좋게 순수 HTML/CSS/JS로 구성했습니다.</p>
+        </div>
+        <div class="principles">
+          <article><strong>요청 누적</strong><p>requests/에 브리프와 결정사항을 보관합니다.</p></article>
+          <article><strong>시안 비교</strong><p>매 요청마다 최소 3개 방향을 비교합니다.</p></article>
+          <article><strong>선택 후 구현</strong><p>선택된 방향만 코드로 강화해 산출물 품질을 유지합니다.</p></article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" role="status" aria-live="polite" hidden>복사했습니다.</div>
+
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <strong>Design Workflow Studio</strong>
+      <span>Built for ongoing Stitch + Gemini design requests.</span>
+    </div>
+  </footer>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
